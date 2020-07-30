@@ -210,6 +210,7 @@ function makeResponsive() {
         var povertyLabel = xLabelsGroup.append("text")
             .attr("x", 0)
             .attr("y", 20)
+            .attr("class","axis-text-x")
             .attr("value", "poverty") // value to grab for event listener
             .classed("active", true)
             .text("Poverty (%)");
@@ -217,6 +218,7 @@ function makeResponsive() {
         var ageLabel = xLabelsGroup.append("text")
             .attr("x", 0)
             .attr("y", 40)
+            .attr("class","axis-text-x")
             .attr("value", "age") // value to grab for event listener
             .classed("inactive", true)
             .text("Age (Median)");
@@ -224,6 +226,7 @@ function makeResponsive() {
         var incomeLabel = xLabelsGroup.append("text")
             .attr("x", 0)
             .attr("y", 60)
+            .attr("class","axis-text-x")
             .attr("value", "income") // value to grab for event listener
             .classed("inactive", true)
             .text("Household Income (Median)");
@@ -239,6 +242,7 @@ function makeResponsive() {
             .attr("x", 0)
             .attr("value", "healthcare")
             .attr("dy", "1em")
+            .attr("class","axis-text-y")
             .classed("axis-text", true)
             .classed("active", true)
             .text("Lacks Healthcare (%)");
@@ -248,7 +252,7 @@ function makeResponsive() {
             .attr("y", -50)
             .attr("value", "smokes")
             .attr("dy", "1em")
-            .classed("axis-text", true)
+            .attr("class","axis-text-y")
             .classed("inactive", true)
             .text("Smokes (%)");
         
@@ -257,7 +261,7 @@ function makeResponsive() {
             .attr("y", -70)
             .attr("value", "obesity")
             .attr("dy", "1em")
-            .classed("axis-text", true)
+            .attr("class","axis-text-y")
             .classed("inactive", true)
             .text("Obese (%)");
 
@@ -302,10 +306,10 @@ function makeResponsive() {
                     .classed("inactive", true);
                 }
                 else if (chosenXAxis === "age") {
-                    povertyLabel
+                    ageLabel
                         .classed("active", true)
                         .classed("inactive", false);
-                    ageLabel
+                    povertyLabel
                         .classed("active", false)
                         .classed("inactive", true);
                     incomeLabel
@@ -314,19 +318,19 @@ function makeResponsive() {
                 }
                 else {
                     povertyLabel
-                        .classed("active", true)
-                        .classed("inactive", false);
+                        .classed("active", false)
+                        .classed("inactive", true);
                     ageLabel
                         .classed("active", false)
                         .classed("inactive", true);
                     incomeLabel
-                    .classed("active", false)
-                    .classed("inactive", true);
+                    .classed("active", true)
+                    .classed("inactive", false);
                 }
 
             }
             
-        yLabelsGroup.selectAll("text")
+        yLabelsGroup.selectAll(".axis-text-y")
             .on("click", function() {
                 // get value of selection
                 var value = d3.select(this).attr("value");
@@ -364,25 +368,25 @@ function makeResponsive() {
                 }
                 else if (chosenYAxis === "smokes") {
                     healthcareLabel
-                        .classed("active", true)
-                        .classed("inactive", false);
-                    smokesLabel
                         .classed("active", false)
                         .classed("inactive", true);
+                    smokesLabel
+                        .classed("active", true)
+                        .classed("inactive", false);
                     obesityLabel
                         .classed("active", false)
                         .classed("inactive", true);
                 }
                 else {
                     healthcareLabel
-                        .classed("active", true)
-                        .classed("inactive", false);
+                        .classed("active", false)
+                        .classed("inactive",true );
                     smokesLabel
                         .classed("active", false)
                         .classed("inactive", true);
                     obesityLabel
-                        .classed("active", false)
-                        .classed("inactive", true);
+                        .classed("active", true)
+                        .classed("inactive", false);
                 }
 
             }

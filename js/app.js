@@ -121,7 +121,7 @@ function makeResponsive() {
         //select y label
         //percentage lacking healthcare
         if (chosenYAxis === 'healthcare') {
-            var yLabel = "No Healthcare:"
+            var yLabel = "Lacks Healthcare:"
         }
         //percentage obese
         else if (chosenYAxis === 'obesity') {
@@ -137,7 +137,15 @@ function makeResponsive() {
             .attr("class", "d3-tip")
             .offset([-8, 0])
             .html(function(d) {
-                return (`${d.state}<br>${xLabel} ${d[chosenXAxis], chosenXAxis}<br>${yLabel} ${d[chosenYAxis]}%`);
+                if (chosenXAxis === "income"){
+                    return (`${d.state}<br>${chosenXAxis}: ${d[chosenXAxis]} USD<br>${chosenYAxis}: ${d[chosenYAxis]}%`); 
+                
+                  } else if (chosenXAxis === "age"){
+                    return (`${d.state}<br>${chosenXAxis}: ${d[chosenXAxis]}<br>${chosenYAxis}: ${d[chosenYAxis]}%`); 
+                  }    
+                  else {
+                    return (`${d.state}<br>${chosenXAxis}: ${d[chosenXAxis]}%<br>${chosenYAxis}: ${d[chosenYAxis]}%`); 
+                  }
             });
 
         circlesGroup.call(toolTip);
